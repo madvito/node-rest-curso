@@ -1,0 +1,21 @@
+npm init
+npm install express --save
+npm install body-parser --save    //para trabajar los pedidos POST
+npm install mongoose --save    //para trabajar con mongo
+npm i mongoose-unique-validator --save  //para validar que no haya duplicados
+npm install bcrypt@3.0.6 --save  //para encriptar datos
+npm install underscore  //expande las opciones de js, en este caso para la funcion pick
+
+tener mongo andando (comando mongod en terminal --puede ser en otra ventana de terminal)
+
+cuenta en mlab o mongodb atlas
+   user:madvito
+   pass:R5VHRpjbdn6oOW9f
+String de conexion:mongodb+srv://madvito:R5VHRpjbdn6oOW9f@cluster0-larmv.mongodb.net/cafe
+hostname:cluster0-larmv.mongodb.net
+
+si falla el despliegue a heroku, poner en package.json al nivel de name,description y version lo sgte
+"engines":{
+	"node":"12.14.0 o la version que se uso"
+}
+                                                                          
