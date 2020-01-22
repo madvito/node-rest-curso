@@ -5,6 +5,7 @@ npm install mongoose --save    //para trabajar con mongo
 npm i mongoose-unique-validator --save  //para validar que no haya duplicados
 npm install bcrypt@3.0.6 --save  //para encriptar datos
 npm install underscore  //expande las opciones de js, en este caso para la funcion pick
+npm install jsonwebtoken --save
 
 tener mongo andando (comando mongod en terminal --puede ser en otra ventana de terminal)
 
@@ -18,4 +19,11 @@ si falla el despliegue a heroku, poner en package.json al nivel de name,descript
 "engines":{
 	"node":"12.14.0 o la version que se uso"
 }
-                                                                          
+                                                              
+
+Crear variables de entorno de heroku desde CLI
+heroku config   //muestra las variables de entorno que hay
+heroku config:set nombrevar="valorvar"     //crear y setear var
+heroku config:get nombrevar //devuelve el valor de la variable
+heroku config:unset nombrevar //elimina var  
+heroku config:set MONGO_URI="mongodb+srv://madvito:R5VHRpjbdn6oOW9f@cluster0-larmv.mongodb.net/cafe"   

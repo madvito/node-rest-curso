@@ -3,10 +3,13 @@ const bcrypt = require('bcrypt');
 const _ = require('underscore'); //amplia las opciones de js, se usara para usar la funcion pick
 
 const Usuario = require('../models/usuario');
+const { verificaToken, verificaAdmin_Role } = require('../middlewares/autenticacion'); //importar el middleware para verificar token
 
 const app = express();
 
-app.get('/usuario', (req, res) => {
+//verificaToken validara el token antes de continuar
+app.get('/usuario', verificaToken, (req, res) => {
+
 
 
     let desde = req.query.desde || 0; //recupera el valor "desde" de la url?desde=valor de manera opcional
@@ -44,7 +47,7 @@ app.get('/usuario', (req, res) => {
 
 })
 
-app.post('/usuario', (req, res) => {
+app.post('/usuario', [verificaToken, verificaAdmin_Role], (req, res) => { //para usar mas de 1 middleware, hay que juntarlos en []
 
     let body = req.body; //req.body es el resultado del payload que procesa bodyParser
 
@@ -86,7 +89,7 @@ app.post('/usuario', (req, res) => {
 
 })
 
-app.put('/usuario/:id', (req, res) => { //id vuelve como valor para el put
+app.put('/usuario/:id', [verificaToken, verificaAdmin_Role], (req, res) => { //id vuelve como valor para el put
     let id = req.params.id;
     let body = _.pick(req.body, ['nombre', 'email', 'img', 'role', 'estado']); //crea un clon del objeto filtrando, solo tendra los elementos que esten en el arreglo
 
@@ -107,7 +110,7 @@ app.put('/usuario/:id', (req, res) => { //id vuelve como valor para el put
 
 });
 
-app.delete('/usuario/:id', (req, res) => {
+app.delete('/usuario/:id', [verificaToken, verificaAdmin_Role], (req, res) => {
     //res.json('delete usuario'); envia json
 
     let id = req.params.id;

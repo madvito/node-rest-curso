@@ -15,8 +15,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
+//importar index que trae todas las rutas
+app.use(require('./routes/index'));
 
-app.use(require('./routes/usuario'));
 
 
 
