@@ -27,3 +27,7 @@ heroku config:set nombrevar="valorvar"     //crear y setear var
 heroku config:get nombrevar //devuelve el valor de la variable
 heroku config:unset nombrevar //elimina var  
 heroku config:set MONGO_URI="mongodb+srv://madvito:R5VHRpjbdn6oOW9f@cluster0-larmv.mongodb.net/cafe"   
+
+
+para la validación del token de google
+npm install google-auth-library --save
