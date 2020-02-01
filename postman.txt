@@ -1,1 +1,8 @@
 para agregar valores por post, agregarlos en body/x.www.form-urlencoded
+
+
+DOCUMENTAR
+boton derecho en Cafe-udemy/publish Docs  //se abre una ventana
+
+Marcar el environment //desarrollo
+marcar publish
