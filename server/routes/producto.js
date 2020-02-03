@@ -4,7 +4,7 @@ const { verificaToken } = require('../middlewares/autenticacion');
 
 let app = express();
 let Producto = require('../models/producto');
-let Categoria = require('../models/categoria');
+
 
 //obtener todos los productos
 
@@ -91,53 +91,39 @@ app.post('/productos', verificaToken, (req, res) => {
     //grabar el usuario
     //grabar una categoria del listado
     let body = req.body;
-    Categoria.findById(body._id, (err, categoriaDB) => {
+
+    let producto = new Producto({
+        nombre: body.nombre,
+        precioUni: body.precioUni,
+        descripcion: body.descripcion,
+        disponible: body.disponible,
+        categoria: body.categoria,
+        usuario: req.usuario._id
+    });
+    producto.save((err, productoDB) => {
         if (err) {
             return res.status(500).json({
                 ok: false,
                 err
             });
         }
-        if (!categoriaDB) {
+        if (!productoDB) {
             return res.status(400).json({
                 ok: false,
                 err: {
-                    message: 'No se encuentra la categoria'
+                    message: 'Error al crear producto'
                 }
             });
         }
-        let producto = new Producto({
-            nombre: body.nombre,
-            precioUni: body.precioUni,
-            descripcion: body.descripcion,
-            disponible: body.disponible,
-            categoria: categoriaDB,
-            usuario: req.usuario._id
+        res.json({
+            ok: true,
+            producto: productoDB
         });
-        producto.save((err, productoDB) => {
-            if (err) {
-                return res.status(500).json({
-                    ok: false,
-                    err
-                });
-            }
-            if (!productoDB) {
-                return res.status(400).json({
-                    ok: false,
-                    err: {
-                        message: 'Error al crear producto'
-                    }
-                });
-            }
-            res.json({
-                ok: true,
-                producto: productoDB
-            });
-        })
+    });
 
 
 
-    })
+
 
 
 

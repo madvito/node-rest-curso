@@ -6,6 +6,7 @@ npm i mongoose-unique-validator --save  //para validar que no haya duplicados
 npm install bcrypt@3.0.6 --save  //para encriptar datos
 npm install underscore  //expande las opciones de js, en este caso para la funcion pick
 npm install jsonwebtoken --save
+npm install --save express-fileupload
 
 tener mongo andando (comando mongod en terminal --puede ser en otra ventana de terminal)
 
